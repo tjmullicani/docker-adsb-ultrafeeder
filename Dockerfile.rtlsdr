@@ -1,6 +1,6 @@
-FROM ghcr.io/sdr-enthusiasts/docker-tar1090:latest
+FROM ghcr.io/tjmullicani/docker-tar1090:rtlsdr
 
-LABEL org.opencontainers.image.source = "https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder"
+LABEL org.opencontainers.image.source = "https://github.com/tjmullicani/docker-adsb-ultrafeeder"
 
 ENV URL_MLAT_CLIENT_REPO="https://github.com/wiedehopf/mlat-client.git" \
     PRIVATE_MLAT="false" \
@@ -62,7 +62,7 @@ COPY rootfs/ /
 RUN set -x && \
     branch="##BRANCH##" && \
     [[ "${branch:0:1}" == "#" ]] && branch="main" || true && \
-    git clone --depth=1 -b $branch https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder.git /tmp/clone && \
+    git clone --depth=1 -b $branch https://github.com/tjmullicani/docker-adsb-ultrafeeder.git /tmp/clone && \
     pushd /tmp/clone && \
     echo "$(TZ=UTC date +%Y%m%d-%H%M%S)_$(git rev-parse --short HEAD)_$(git branch --show-current)" > /.CONTAINER_VERSION && \
     popd && \
